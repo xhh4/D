@@ -32,7 +32,7 @@ textLabel.Font = Enum.Font.GothamBold
 textLabel.TextSize = 24
 textLabel.Parent = mainFrame
 
-local closeButton = Instance.new("TextLabel")
+local closeButton = Instance.new("TextButton")
 closeButton.Size = UDim2.new(0, 30, 0, 30)
 closeButton.Position = UDim2.new(1, -35, 0, 5)
 closeButton.BackgroundTransparency = 1
@@ -47,22 +47,24 @@ local tweenGoal = {Position = UDim2.new(0.5, -125, 0.5, -150)}
 local tween = TweenService:Create(mainFrame, tweenInfo, tweenGoal)
 tween:Play()
 
-wait(1)
-textLabel.Text = "Loading..."
-wait(1)
-textLabel.Text = "Injecting..."
-wait(3)
-textLabel.Text = "Complete"
-wait(2)
-
-local fadeOut = TweenInfo.new(0.5, Enum.EasingStyle.Quad)
-local fadeGoal = {Position = UDim2.new(0.5, -125, 1.5, -150)}
-local fadeTween = TweenService:Create(mainFrame, fadeOut, fadeGoal)
-fadeTween:Play()
-fadeTween.Completed:Wait()
-screenGui:Destroy()
-
 closeButton.MouseButton1Click:Connect(function()
+   local fadeOut = TweenInfo.new(0.5, Enum.EasingStyle.Quad)
+   local fadeGoal = {Position = UDim2.new(0.5, -125, 1.5, -150)}
+   local fadeTween = TweenService:Create(mainFrame, fadeOut, fadeGoal)
+   fadeTween:Play()
+   fadeTween.Completed:Wait()
+   screenGui:Destroy()
+end)
+
+task.spawn(function()
+   wait(1)
+   textLabel.Text = "Loading..."
+   wait(1)
+   textLabel.Text = "Injecting..."
+   wait(3)
+   textLabel.Text = "Complete"
+   wait(2)
+   
    local fadeOut = TweenInfo.new(0.5, Enum.EasingStyle.Quad)
    local fadeGoal = {Position = UDim2.new(0.5, -125, 1.5, -150)}
    local fadeTween = TweenService:Create(mainFrame, fadeOut, fadeGoal)
